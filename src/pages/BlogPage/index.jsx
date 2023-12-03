@@ -1,8 +1,20 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
+
+import { useGoogleLogin } from "@react-oauth/google";
+
 import { Button, Img, List, Text } from "components";
 
 const BlogPagePage = () => {
+  const navigate = useNavigate();
+  const googleSignIn = useGoogleLogin({
+    onSuccess: (res) => {
+      console.log("res", res);
+      alert("Login successfull. 😍");
+    },
+  });
+
   return (
     <>
       <div className="bg-gray-50 flex flex-col items-center justify-start mx-auto w-full">
@@ -25,23 +37,26 @@ const BlogPagePage = () => {
                 <div className="flex flex-row gap-6 items-start justify-start w-auto">
                   <div className="flex flex-col items-center justify-start w-auto">
                     <Text
-                      className="text-base text-center text-gray-900_01 w-auto"
+                      className="common-pointer text-base text-center text-gray-900_01 w-auto"
                       size="txtGilroySemiBold16"
+                      onClick={() => navigate("/dashboard")}
                     >
                       Dashboard
                     </Text>
                   </div>
                   <div className="flex flex-col items-center justify-start w-auto">
                     <Text
-                      className="text-base text-center text-gray-900_99 w-auto"
+                      className="common-pointer text-base text-center text-gray-900_99 w-auto"
                       size="txtGilroyMedium16"
+                      onClick={() => navigate("/devtoprofile")}
                     >
                       Dev.to Profile
                     </Text>
                   </div>
                   <Text
-                    className="text-base text-center text-gray-900_99 w-auto"
+                    className="common-pointer text-base text-center text-gray-900_99 w-auto"
                     size="txtGilroyMedium16"
+                    onClick={() => navigate("/mediumprofile")}
                   >
                     Medium Profile
                   </Text>
@@ -49,14 +64,16 @@ const BlogPagePage = () => {
               </div>
               <div className="flex flex-row gap-6 sm:hidden items-start justify-start mr-[68px] w-[331px]">
                 <Button
-                  className="cursor-pointer font-medium h-10 min-w-[161px] text-base text-center"
+                  className="common-pointer cursor-pointer font-medium h-10 min-w-[161px] text-base text-center"
+                  onClick={() => googleSignIn()}
                   shape="round"
                   color="gray_900_02"
                 >
                   Write on medium
                 </Button>
                 <Button
-                  className="cursor-pointer font-medium h-10 min-w-[146px] text-base text-center"
+                  className="common-pointer cursor-pointer font-medium h-10 min-w-[146px] text-base text-center"
+                  onClick={() => navigate("/writeondevto")}
                   shape="round"
                   color="gray_900_02"
                 >

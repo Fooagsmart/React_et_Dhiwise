@@ -1,8 +1,12 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import { Button, Input, Text, TextArea } from "components";
 
 const WriteondevtoPage = () => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="bg-gray-50 flex flex-col font-gilroy items-center justify-start mx-auto w-full">
@@ -24,7 +28,8 @@ const WriteondevtoPage = () => {
                 </div>
                 <div className="flex flex-row gap-6 items-start justify-end mr-[15px] w-[201px]">
                   <Button
-                    className="cursor-pointer font-medium h-10 min-w-[89px] text-base text-center"
+                    className="common-pointer cursor-pointer font-medium h-10 min-w-[89px] text-base text-center"
+                    onClick={() => navigate(-1)}
                     shape="round"
                     color="blue_gray_400"
                     variant="outline"
