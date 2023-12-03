@@ -1,8 +1,20 @@
 import React from "react";
 
+import { useNavigate } from "react-router-dom";
+
+import { useGoogleLogin } from "@react-oauth/google";
+
 import { Button, Img, List, Text } from "components";
 
 const MediumProfilePage = () => {
+  const navigate = useNavigate();
+  const googleSignIn = useGoogleLogin({
+    onSuccess: (res) => {
+      console.log("res", res);
+      alert("Login successfull. 😍");
+    },
+  });
+
   return (
     <>
       <div className="bg-gray-50 flex flex-col font-gilroy items-center justify-start mx-auto w-full">
@@ -25,23 +37,26 @@ const MediumProfilePage = () => {
                 <div className="flex flex-row gap-6 items-start justify-start w-auto">
                   <div className="flex flex-col items-center justify-start w-auto">
                     <Text
-                      className="text-base text-center text-gray-900_99 w-auto"
+                      className="common-pointer text-base text-center text-gray-900_99 w-auto"
                       size="txtGilroyMedium16"
+                      onClick={() => navigate("/dashboard")}
                     >
                       Dashboard
                     </Text>
                   </div>
                   <div className="flex flex-col items-center justify-start w-auto">
                     <Text
-                      className="text-base text-center text-gray-900_99 w-auto"
+                      className="common-pointer text-base text-center text-gray-900_99 w-auto"
                       size="txtGilroyMedium16"
+                      onClick={() => navigate("/devtoprofile")}
                     >
                       Dev.to Profile
                     </Text>
                   </div>
                   <Text
-                    className="text-base text-center text-gray-900_01 w-auto"
+                    className="common-pointer text-base text-center text-gray-900_01 w-auto"
                     size="txtGilroySemiBold16"
+                    onClick={() => navigate("/mediumprofile")}
                   >
                     Medium Profile
                   </Text>
@@ -49,14 +64,16 @@ const MediumProfilePage = () => {
               </div>
               <div className="flex flex-row gap-6 sm:hidden items-start justify-start mr-[68px] w-[331px]">
                 <Button
-                  className="cursor-pointer font-medium h-10 min-w-[161px] text-base text-center"
+                  className="common-pointer cursor-pointer font-medium h-10 min-w-[161px] text-base text-center"
+                  onClick={() => googleSignIn()}
                   shape="round"
                   color="gray_900_02"
                 >
                   Write on medium
                 </Button>
                 <Button
-                  className="cursor-pointer font-medium h-10 min-w-[146px] text-base text-center"
+                  className="common-pointer cursor-pointer font-medium h-10 min-w-[146px] text-base text-center"
+                  onClick={() => navigate("/writeondevto")}
                   shape="round"
                   color="gray_900_02"
                 >
@@ -65,7 +82,7 @@ const MediumProfilePage = () => {
               </div>
             </div>
           </header>
-          <div className="border border-blue_gray-100 border-solid flex flex-col items-center justify-start max-w-[676px] md:ml-[0] ml-[382px] mt-14 md:px-5 px-[140px] py-8 rounded-lg w-full">
+          <div className="border border-blue_gray-100 border-solid flex flex-col items-center justify-start max-w-[676px] mt-14 mx-auto md:px-5 px-[140px] py-8 rounded-lg w-full">
             <div className="flex flex-col gap-4 items-center justify-start w-auto">
               <Img
                 className="h-[158px] md:h-auto rounded-[50%] w-[158px]"
@@ -89,13 +106,13 @@ const MediumProfilePage = () => {
             </div>
           </div>
           <Text
-            className="md:ml-[0] ml-[386px] mt-[41px] text-blue_gray-900 text-xl"
+            className="mt-[41px] mx-auto text-blue_gray-900 text-xl"
             size="txtGilroySemiBold20"
           >
             04 Following
           </Text>
           <List
-            className="flex flex-col gap-4 items-center md:ml-[0] ml-[382px] mt-[18px] md:px-5 w-[47%]"
+            className="flex flex-col gap-4 items-center mt-[18px] mx-auto md:px-5 w-1/2"
             orientation="vertical"
           >
             <div className="bg-white-A700 border border-blue_gray-200 border-solid flex md:flex-col flex-row gap-4 items-start justify-start max-w-[676px] p-2.5 rounded-lg w-full">
@@ -147,7 +164,7 @@ const MediumProfilePage = () => {
             </div>
           </List>
           <List
-            className="flex flex-col gap-4 items-center md:ml-[0] ml-[382px] mt-4 md:px-5 w-[47%]"
+            className="flex flex-col gap-4 items-center mt-4 mx-auto md:px-5 w-1/2"
             orientation="vertical"
           >
             <div className="bg-white-A700 border border-blue_gray-200 border-solid flex sm:flex-col flex-row gap-4 items-start justify-start max-w-[676px] p-2.5 rounded-lg w-full">
